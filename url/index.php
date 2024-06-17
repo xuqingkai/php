@@ -23,9 +23,6 @@
     
     <h1><?php echo($_SERVER["SCRIPT_FILENAME"]); ?></h1>
     <code>$_SERVER["SCRIPT_FILENAME"]</code>
-    
-    <h1><?php echo($_SERVER["DOCUMENT_ROOT"]); ?></h1>
-    <code>$_SERVER["DOCUMENT_ROOT"]</code>
 
     <h1><?php echo('http'.($_SERVER["SERVER_PORT"]==443?'s':'').'://'.$_SERVER["HTTP_HOST"]); ?></h1>
     <code>'http'.($_SERVER["SERVER_PORT"]==443?'s':'').'://'.$_SERVER["HTTP_HOST"]</code>
