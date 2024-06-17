@@ -51,7 +51,7 @@
     <h1><?php echo('http'.($_SERVER["SERVER_PORT"]==443?'s':'').'://'.$_SERVER["HTTP_HOST"].$_SERVER["PHP_SELF"].'?'.$_SERVER["QUERY_STRING"]); ?></h1>
     <code>'http'.($_SERVER["SERVER_PORT"]==443?'s':'').'://'.$_SERVER["HTTP_HOST"].$_SERVER["PHP_SELF"].'?'.$_SERVER["QUERY_STRING"]</code>
     
-    <h1>DOCUMENT_URI与PHP_SELF区别，前者实际请求什么就是什么，后者如果请求的是/结尾的地址，会附带index.php</h1>
+    <h1>DOCUMENT_URI与PHP_SELF区别，前者实际请求什么就是什么，后者如果请求的是<a href="/url/index.php/news/detail/?id=1">以/结尾的地址</a>，会附带index.php</h1>
     <p>
         如请求：/1.php/index/index?dd=2131<br />
         DOCUMENT_URI：/1.php/index/index<br />
