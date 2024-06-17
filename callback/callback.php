@@ -47,7 +47,7 @@ if(isset($query['view'])){
     $text.=date('Y-m-d H:i:s')."\r\n";
     $text.="-----【URL】------------------------------------------------------------------\r\n";
     $text.=$_SERVER['REQUEST_URI']."\r\n";
-    $text.="-----【HEADER】------------------------------------------------------------------\r\n";
+    $text.="-----【REQUEST_HEADER】------------------------------------------------------------------\r\n";
     $text.= implode("\r\n",$header)."\r\n";
     $text.="-----【".$method."】------------------------------------------------------------------\r\n";
     $text.=$content."\r\n";
@@ -64,7 +64,16 @@ if(isset($query['view'])){
         		'verify_peer_name'=>false
         	)
         )));
-
+        
+        $text.="-----【RESPONSE_HEADER】------------------------------------------------------------------\r\n";
+        foreach ($http_response_header as $header){
+            foreach($headers as $item){
+                if(strpos(strtolower($header),strtolower("HTTP_".$item.':')) !== false){
+                    $text.=$header."\r\n";
+                } 
+            }
+        };
+    
         $text.="-----【RESPONSE】------------------------------------------------------------------\r\n";
         $text.=$response."\r\n";
     }
