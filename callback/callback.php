@@ -32,12 +32,21 @@ if(isset($query['view'])){
 }else{
     $response=$name;
     $header=[];
-    foreach($_SERVER as $key=>$val){
-        foreach($headers as $item){
-            if(str_replace('-','',strtoupper($key)) == str_replace('-','',strtoupper('HTTP_'.$item))){
-              $header[]=$key.":".$val; 
+    //exit(json_encode($_SERVER));
+    foreach($headers as $item){
+        $headerKey=$item;
+        $headerValue='';
+        foreach($_SERVER as $key=>$val){
+            if(str_replace('-','',str_replace('_','',strtoupper('HTTP_'.$item))) == str_replace('-','',str_replace('_','',strtoupper($key)))){
+              if(strpos($key, 'HTTP_')!== false){
+                  $headerKey=substr($key,5);
+              }else{
+                  $headerKey=$key;
+              }
+              $headerValue=$val; 
             }
         }
+        $header[]=$headerKey.":".$headerValue; 
     }
     $method=$_SERVER['REQUEST_METHOD'];
     $content=file_get_contents('php://input');
@@ -48,7 +57,7 @@ if(isset($query['view'])){
     $text.="-----【URL】------------------------------------------------------------------\r\n";
     $text.=$_SERVER['REQUEST_URI']."\r\n";
     $text.="-----【REQUEST_HEADER】------------------------------------------------------------------\r\n";
-    $text.= implode("\r\n",$header)."\r\n";
+    $text.= implode("\r\n", $header)."\r\n";
     $text.="-----【".$method."】------------------------------------------------------------------\r\n";
     $text.=$content."\r\n";
     if($url){
@@ -56,7 +65,7 @@ if(isset($query['view'])){
         $response=file_get_contents($url, false, stream_context_create(array(
         	'http' => array(
         		'method' => $method,
-        		'header'  => implode("\r\n",$header),
+        		'header'  => implode("\r\n", $header),
         		'content' => $content
         	),
         	'ssl'=>array(
@@ -68,7 +77,7 @@ if(isset($query['view'])){
         $text.="-----【RESPONSE_HEADER】------------------------------------------------------------------\r\n";
         foreach ($http_response_header as $header){
             foreach($headers as $item){
-                if(strpos(strtolower($header),strtolower("HTTP_".$item.':')) !== false){
+                if(strpos(strtolower($header), strtolower($item.':')) !== false){
                     $text.=$header."\r\n";
                 } 
             }
