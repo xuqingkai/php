@@ -34,19 +34,19 @@ if(isset($query['view'])){
     $header=[];
     //exit(json_encode($_SERVER));
     foreach($headers as $item){
-        $headerKey=$item;
-        $headerValue='';
+        $header_key=$item;
+        $header_value='';
         foreach($_SERVER as $key=>$val){
             if(str_replace('-','',str_replace('_','',strtoupper('HTTP_'.$item))) == str_replace('-','',str_replace('_','',strtoupper($key)))){
               if(strpos($key, 'HTTP_')!== false){
-                  $headerKey=substr($key,5);
+                  $header_key=substr($key,5);
               }else{
-                  $headerKey=$key;
+                  $header_key=$key;
               }
-              $headerValue=$val; 
+              $header_value=$val; 
             }
         }
-        $header[]=$headerKey.":".$headerValue; 
+        $header[]=$header_key.":".$header_value; 
     }
     $method=$_SERVER['REQUEST_METHOD'];
     $content=file_get_contents('php://input');
