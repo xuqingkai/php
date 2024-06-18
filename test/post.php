@@ -1,5 +1,5 @@
 <?php
-$url='http://okqq.eu.org/callback/';
+$url='https://apis.map.qq.com/';
 $data='{}';
 $response=file_get_contents($url, false, stream_context_create(array(
   'http'=>array(
