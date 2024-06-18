@@ -2,7 +2,7 @@
 return [
     'database'=>[
         // 数据库类型
-        'type'=> 'mysql',
+        'type'=> 'sqlite',
         // SQLite
         'filepath'=>'sqlite3.db',
         // 服务器地址
