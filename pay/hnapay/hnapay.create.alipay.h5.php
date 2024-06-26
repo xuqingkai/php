@@ -31,7 +31,7 @@ $hnapay['msgCiphertext']['payLimit']='';
 $hnapay['encrypted']=array();
 foreach(str_split(json_encode($hnapay['msgCiphertext'], JSON_UNESCAPED_UNICODE), 117) as $hnapay['item']){
     $hnapay['item_encrypted']='';
-    openssl_public_encrypt($hnapay['item'], $hnapay['item_encrypted'], "-----BEGIN PUBLIC KEY-----\n".wordwrap($hnapay['alipay_public_key'], 64, "\n", true)."\n-----END PUBLIC KEY-----");
+    openssl_public_encrypt($hnapay['item'], $hnapay['item_encrypted'], $hnapay['public_key']);
     $hnapay['encrypted'][]=$hnapay['item_encrypted'];
 }
 $hnapay['data']['msgCiphertext']=base64_encode(implode('',$hnapay['encrypted']));
