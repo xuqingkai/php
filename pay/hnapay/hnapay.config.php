@@ -22,7 +22,7 @@ $hnapay['weChatMchId']='';
 $hnapay['weixin_public_key']='';
 $hnapay['weixin_public_key']=str_replace('-----BEGIN PUBLIC KEY-----','',str_replace('-----END PUBLIC KEY-----','',$hnapay['weixin_public_key']));
 $hnapay['weixin_public_key']=str_replace("\r",'',str_replace("\n",'',$hnapay['weixin_public_key']));
-//微信商户私钥
+//微信商户私钥，从jks文件转pem过来
 $hnapay['weixin_private_key']='';
 $hnapay['weixin_private_key']=str_replace('-----BEGIN RSA PRIVATE KEY-----','',str_replace('-----END RSA PRIVATE KEY-----','',$hnapay['weixin_private_key']));
 $hnapay['weixin_private_key']=str_replace("\r",'',str_replace("\n",'',$hnapay['weixin_private_key']));
