@@ -36,4 +36,4 @@ $hnapay['alipay_public_key']=str_replace("\r",'',str_replace("\n",'',$hnapay['al
 //支付宝商户私钥
 $hnapay['alipay_private_key']='';
 $hnapay['alipay_private_key']=str_replace('-----BEGIN RSA PRIVATE KEY-----','',str_replace('-----END RSA PRIVATE KEY-----','',$hnapay['alipay_private_key']));
-$hnapay['alipay_private_key']=str_replace("\r",'',str_replace("n",'',$hnapay['alipay_private_key']));
+$hnapay['alipay_private_key']=str_replace("\r",'',str_replace("\n",'',$hnapay['alipay_private_key']));
