@@ -12,8 +12,11 @@ $hnapay['merId']='';
 
 //接口付款公钥，位于demo里
 $hnapay['public_key']='./test.cer';
-$hnapay['public_key']=str_replace('-----BEGIN PUBLIC KEY-----','',str_replace('-----END PUBLIC KEY-----','',$hnapay['public_key']));
-$hnapay['public_key']=str_replace("\r",'',str_replace("\n",'',$hnapay['public_key']));
+if(is_file($hnapay['public_key'])){ $hnapay['public_key'] = file_get_contents($hnapay['public_key']);}
+if(strpos($hnapay['public_key'], 'PUBLIC KEY')===false){
+  $hnapay['public_key'] = "-----BEGIN PUBLIC KEY-----\n".wordwrap($hnapay['public_key'], 64, "\n", true)."\n-----END PUBLIC KEY-----";
+  //$hnapay['public_key'] = "-----BEGIN CERTIFICATE-----\n".chunk_split($hnapay['public_key'], 64, "\n")."\n-----BEGIN CERTIFICATE-----";
+}
 
 /*
 5.1 微信公众号&支付宝生活号
@@ -36,6 +39,11 @@ $hnapay['weChatMchId']='';
 //微信接口付款公钥
 $hnapay['weixin_public_key']='-----BEGIN PUBLIC KEY-----
 -----END PUBLIC KEY-----';
+if(is_file($hnapay['weixin_public_key'])){ $hnapay['weixin_public_key'] = file_get_contents($hnapay['weixin_public_key']);}
+if(strpos($hnapay['weixin_public_key'], 'PUBLIC KEY')===false){
+  $hnapay['weixin_public_key'] = "-----BEGIN PUBLIC KEY-----\n".wordwrap($hnapay['weixin_public_key'], 64, "\n", true)."\n-----END PUBLIC KEY-----";
+  //$hnapay['weixin_public_key'] = "-----BEGIN CERTIFICATE-----\n".chunk_split($hnapay['weixin_public_key'], 64, "\n")."\n-----BEGIN CERTIFICATE-----";
+}
 //微信商户私钥，jks文件转pem过来
 $hnapay['weixin_private_key']='-----BEGIN RSA PRIVATE KEY-----
 -----END RSA PRIVATE KEY-----';
