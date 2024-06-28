@@ -1,5 +1,5 @@
 <?php
-$url='https://apis.map.qq.com/';
+$url='https://www.bing.com/';
 $data='{}';
 $response=file_get_contents($url, false, stream_context_create(array(
   'http'=>array(
@@ -12,3 +12,4 @@ $response=file_get_contents($url, false, stream_context_create(array(
     'verify_peer_name'=>false
   )
 )));
+echo(htmlentities($response));
