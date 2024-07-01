@@ -13,8 +13,9 @@
 <?php 
 $text='';
 foreach($_SERVER as $key=>$val){
-    $text.=$key.":".$val."\r\n";
-	echo("<p>".$key.":".$val."</p>");
+    $value = is_array($val) ||  is_object($val) ? json_encode($val, JSON_UNESCAPED_UNICODE) : $val;
+    $text .= $key .":". $value ."\r\n";
+	echo("<p>". $key .":". $value ."</p>");
 	
 }
 @file_put_contents("./header.txt", $text);
