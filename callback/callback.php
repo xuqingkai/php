@@ -49,7 +49,7 @@ if(isset($query['view'])){
         $header[]=$header_key.":".$header_value; 
     }
     $method=$_SERVER['REQUEST_METHOD'];
-    $content=file_get_contents('php://input');
+    $body=file_get_contents('php://input');
         
         
     $text="\r\n\r\n";
@@ -59,14 +59,14 @@ if(isset($query['view'])){
     $text.="-----【REQUEST_HEADER】------------------------------------------------------------------\r\n";
     $text.= implode("\r\n", $header)."\r\n";
     $text.="-----【".$method."】------------------------------------------------------------------\r\n";
-    $text.=$content."\r\n";
+    $text.=$body."\r\n";
     if($url){
         if(!in_array('Content-Type',$headers)){ $header[]='Content-Type:application/x-www-form-urlencoded'; }
         $response=file_get_contents($url, false, stream_context_create(array(
         	'http' => array(
         		'method' => $method,
         		'header'  => implode("\r\n", $header),
-        		'content' => $content
+        		'content' => $body
         	),
         	'ssl'=>array(
         		'verify_peer'=>false,
