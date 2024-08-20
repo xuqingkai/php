@@ -1,6 +1,7 @@
 <?php
 include_once('./hkrt.config.php');
 header('Content-type:application/json');
+
 $hkrt['path']='/api/v2/pay/pre-pay';
 $hkrt['request']=[];
 $hkrt['request']['agent_no']=$hkrt['agent_no'];
