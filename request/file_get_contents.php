@@ -17,7 +17,7 @@ function http_file($url, $data, $header){
   return [$response, $http_response_header];
 }
 foreach($http_response_header as $response_header){
-  if(substr(strtolower($response_header),0,10)=='set-cookie'){
+  if(strtolower(substr($response_header,0,11))=='set-cookie:'){
     
   }
 }
