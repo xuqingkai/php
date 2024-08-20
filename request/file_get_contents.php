@@ -16,8 +16,15 @@ function http_file($url, $data, $header){
   )));
   return [$response, $http_response_header];
 }
-foreach($http_response_header as $response_header){
-  if(strtolower(substr($response_header,0,11))=='set-cookie:'){
-    
+function http_cookie($http_response_header){
+  $cookies='';
+  foreach($http_response_header as $response_header){
+    if(strtolower(substr($response_header,0,11))=='set-cookie:'){
+      $cookie=substr($response_header,12);
+      $cookie=substr($cookie,0,strpos($cookie,'; '));
+      $cookies.='; '.$cookie;
+    }
   }
+  if(strlen($cookies)>0){$cookies=substr($cookies,2);}
 }
+
