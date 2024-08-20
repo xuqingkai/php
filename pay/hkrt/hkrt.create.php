@@ -4,10 +4,10 @@ header('Content-type:application/json');
 
 $hkrt['request']=[];
 $hkrt['request']['agent_no']=$hkrt['agent_no'];
-$hkrt['request']['req_id']=date('YmdHis').rand(10000,9999);
-
-$hkrt['request']['accessid']=$hkrt['accessid'];
 $hkrt['request']['merch_no']=$hkrt['merch_no'];
+$hkrt['request']['accessid']=$hkrt['accessid'];
+
+$hkrt['request']['req_id']=date('YmdHis').rand(10000,9999);
 $hkrt['request']['pay_type']='ALI';
 $hkrt['request']['pay_mode']='NATIVE';
 //$hkrt['request']['appid']='';//微信支付时使用：微信分配的公众账号 ID
