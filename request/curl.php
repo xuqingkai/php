@@ -1,4 +1,8 @@
 <?php
+//header('Content-Type: application/json; charset=utf-8');
+//error_reporting(0);//都不显示
+//error_reporting(E_ALL);//都显示
+//date_default_timezone_set('PRC');
 function http_curl($url,$data,$header){
     $curl = curl_init($url);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
