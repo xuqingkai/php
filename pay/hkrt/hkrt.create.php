@@ -2,18 +2,6 @@
 include_once('./hkrt.config.php');
 header('Content-type:application/json');
 
-$hkrt['host']='https://saas-front.hkrt.cn';
-$hkrt['path']='/api/v2/pay/pre-pay';
-$hkrt['merch_no_list']=explode(',','833103181112245,833466873720541');
-$hkrt['merch_no']=$hkrt['merch_no_list'][rand(1,count($hkrt['merch_no_list']))-1];
-
-$hkrt['agent_no']='ISV003440';
-$hkrt['accessid']='4028809891321ec60191454113981ef0';
-$hkrt['accesskey']='526d274d850b470a97f4c8e38399bacb';
-
-$hkrt['translatekey']='F36116F51B262562B0F0D537A2463485';
-$hkrt['password']='';
-
 $hkrt['request']=[];
 $hkrt['request']['agent_no']=$hkrt['agent_no'];
 $hkrt['request']['req_id']=date('YmdHis').rand(10000,9999);
