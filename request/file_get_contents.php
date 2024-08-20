@@ -14,6 +14,7 @@ function http_file($url, $data, $header){
     ),
     'ssl'=>array('verify_peer'=>false,'verify_peer_name'=>false)
   )));
+  return [$response, $http_response_header];
 }
 foreach($http_response_header as $response_header){
   if(substr(strtolower($response_header),0,10)=='set-cookie'){
