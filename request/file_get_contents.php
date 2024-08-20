@@ -1,4 +1,8 @@
 <?php
+//header('Content-Type: application/json; charset=utf-8');
+//error_reporting(0);//都不显示
+//error_reporting(E_ALL);//都显示
+//date_default_timezone_set('PRC');
 $url='';
 $data='';
 $response=file_get_contents($url, false, stream_context_create(array(
