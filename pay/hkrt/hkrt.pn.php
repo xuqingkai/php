@@ -1,21 +1,16 @@
 <?php
 include_once('./hkrt.config.php');
 header('Content-type:application/json');
-$hkrt['path']='/api/v2/pay/pre-pay';
+$hkrt['path']='/api/v1/merchant-terminal/new-bind';
 $hkrt['request']=[];
 $hkrt['request']['agent_no']=$hkrt['agent_no'];
 $hkrt['request']['merch_no']=$hkrt['merch_no'];
 $hkrt['request']['accessid']=$hkrt['accessid'];
 
-$hkrt['request']['req_id']=date('YmdHis').rand(10000,9999);
-$hkrt['request']['pay_type']='ALI';
-$hkrt['request']['pay_mode']='NATIVE';
-//$hkrt['request']['appid']='';//微信支付时使用：微信分配的公众账号 ID
-//$hkrt['request']['openid']='';//pay_mode=JSAPI时此参数必传
-$hkrt['request']['out_trade_no']=date('YmdHis').rand(10000,9999);
-$hkrt['request']['total_amount']='1.23';
-$hkrt['request']['notify_url']='http://www.meak.cn/callback/';
-$hkrt['request']['pn']='WZ000001';
+$hkrt['request']['agent_apply_no']=date('YmdHis').rand(10000,9999);
+$hkrt['request']['sn']='sn'.$hkrt['request']['agent_apply_no'].md5($hkrt['request']['agent_apply_no']);
+$hkrt['request']['code']='11';
+$hkrt['request']['terminal_address']='上海市-上海市-浦东新区-五星路';
 
 $hkrt['sign_string']='';
 ksort($hkrt['request']);
