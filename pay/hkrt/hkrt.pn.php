@@ -2,7 +2,9 @@
 include_once('./hkrt.config.php');
 header('Content-type:application/json');
 
+$hkrt['host']='http://saas.hkrt.cn:8080';
 $hkrt['path']='/api/v1/merchant-terminal/new-bind';
+
 $hkrt['request']=[];
 $hkrt['request']['agent_no']=$hkrt['agent_no'];
 $hkrt['request']['merch_no']=$hkrt['merch_no'];
@@ -18,7 +20,8 @@ ksort($hkrt['request']);
 foreach($hkrt['request'] as $key=>$val){ $hkrt['sign_string'].='&'.$key.'='.$val; }
 $hkrt['sign_string']=substr($hkrt['sign_string'],1).$hkrt['accesskey'];
 $hkrt['request']['sign']=strtoupper(md5($hkrt['sign_string']));
-$hkrt['response_string']=file_get_contents($hkrt['host'].$hkrt['path'], false, stream_context_create(array('http'=>array('method'=>'POST','header'=>"Content-type:application/json;charset=UTF-8",'content'=>json_encode($hkrt['request'])),'ssl'=>array('verify_peer'=>false, 'verify_peer_name'=>false))));
+$hkrt['request_string']=json_encode($hkrt['request'],JSON_UNESCAPED_UNICODE);
+$hkrt['response_string']=file_get_contents($hkrt['host'].$hkrt['path'], false, stream_context_create(array('http'=>array('method'=>'POST','header'=>"Content-type:application/json;charset=UTF-8",'content'=>$hkrt['request_string']),'ssl'=>array('verify_peer'=>false, 'verify_peer_name'=>false))));
 $hkrt['response']=json_decode($hkrt['response_string'], true);
 
 exit(json_encode($hkrt));
