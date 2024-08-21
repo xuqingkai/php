@@ -11,7 +11,7 @@ $hkrt['request']['merch_no']=$hkrt['merch_no'];
 $hkrt['request']['accessid']=$hkrt['accessid'];
 
 $hkrt['request']['agent_apply_no']=date('YmdHis').rand(10000,99999);
-$hkrt['request']['sn']='sn'.$hkrt['request']['agent_apply_no'].md5($hkrt['request']['agent_apply_no']);
+$hkrt['request']['sn']='SN'.date('_Ymd_His_').rand(10000,99999);
 $hkrt['request']['code']='11';
 $hkrt['request']['terminal_address']='上海市-上海市-浦东新区-五星路';
 
