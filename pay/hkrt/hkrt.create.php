@@ -19,7 +19,7 @@ $hkrt['request']['pn']='WZ000001';//通过PN接口获取
 
 $hkrt['sign_string']='';
 ksort($hkrt['request']);
-foreach($hkrt['request'] as $key=>$val){ if(strtolower($key)!='sign'){$hkrt['sign_string'].='&'.$key.'='.$val;} }
+foreach($hkrt['request'] as $key=>$val){ if(strtolower($key)!='sign' && strlen($val)>0){$hkrt['sign_string'].='&'.$key.'='.$val;} }
 $hkrt['sign_string']=substr($hkrt['sign_string'],1).$hkrt['accesskey'];
 $hkrt['request']['sign']=strtoupper(md5($hkrt['sign_string']));
 $hkrt['request_string']=json_encode($hkrt['request'],JSON_UNESCAPED_UNICODE);
