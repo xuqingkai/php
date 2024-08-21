@@ -15,7 +15,7 @@ $hkrt['request']['pay_mode']='NATIVE';
 $hkrt['request']['out_trade_no']=date('YmdHis').rand(10000,99999);
 $hkrt['request']['total_amount']='1.23';
 $hkrt['request']['notify_url']='http://www.meak.cn/callback/';
-$hkrt['request']['pn']='WZ000001';
+$hkrt['request']['pn']='WZ000001';//通过PN接口获取
 
 $hkrt['sign_string']='';
 ksort($hkrt['request']);
