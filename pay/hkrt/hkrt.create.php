@@ -4,7 +4,7 @@ header('Content-type:application/json');
 
 $hkrt['request']=[];
 $hkrt['request']['agent_no']=$hkrt['agent_no'];
-$hkrt['request']['merch_no']=$hkrt['merch_no'];
+$hkrt['request']['merch_no']=$hkrt['merch_no'][rand(1,count($hkrt['merch_no']))-1];
 $hkrt['request']['accessid']=$hkrt['accessid'];
 
 $hkrt['request']['req_id']=date('YmdHis').rand(10000,99999);
