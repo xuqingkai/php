@@ -46,6 +46,9 @@ $hkrt['response']=json_decode($hkrt['response_string'], true);
     "return_code": "SUCCESS"
 }
 */
+$hkrt['pay_url']=$hkrt['response']['ali_qr_code'];
+echo('<img src="/qrcode/?url='.urlencode($hkrt['pay_url']).'" />');
+echo('<h1><a href="'.$hkrt['pay_url'].'">'.$hkrt['pay_url'].'</a></h1>');
 exit(json_encode($hkrt,JSON_UNESCAPED_UNICODE));
 
 ?>
