@@ -14,6 +14,7 @@ $hkrt['request']['pay_mode']='NATIVE';
 //$hkrt['request']['openid']='';//pay_mode=JSAPI时此参数必传
 $hkrt['request']['out_trade_no']=date('YmdHis').rand(10000,99999);
 $hkrt['request']['total_amount']='1.23';
+$hkrt['request']['notify_url']='http'.($_SERVER["SERVER_PORT"]==443?'s':'').'://'.$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"];
 $hkrt['request']['notify_url']='http://www.meak.cn/callback/';
 $hkrt['request']['pn']='WZ000001';//通过PN接口获取
 
