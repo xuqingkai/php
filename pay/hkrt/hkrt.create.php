@@ -4,7 +4,7 @@ header('Content-type:application/json');
 
 $hkrt['request']=[];
 $hkrt['request']['agent_no']=$hkrt['agent_no'];
-$hkrt['request']['merch_no']=$hkrt['merch_no'][rand(1,count($hkrt['merch_no']))-1];
+$hkrt['request']['merch_no']=array_keys($hkrt['merch_no_pn'])[rand(1,count($hkrt['merch_no_pn']))-1];
 $hkrt['request']['accessid']=$hkrt['accessid'];
 
 $hkrt['request']['req_id']=date('YmdHis').rand(10000,99999);
@@ -16,7 +16,8 @@ $hkrt['request']['out_trade_no']=date('YmdHis').rand(10000,99999);
 $hkrt['request']['total_amount']='1.23';
 $hkrt['request']['notify_url']='http'.($_SERVER["SERVER_PORT"]==443?'s':'').'://'.$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"];
 $hkrt['request']['notify_url']='http://www.meak.cn/callback/';
-$hkrt['request']['pn']='WZ000001';//通过hkrt.pn.php接口获取
+//通过hkrt.pn.php接口获取后，配置到config文件中，和申请时的merch_no要一一对应
+$hkrt['request']['pn']=$hkrt['merch_no_pn'][$hkrt['request']['merch_no']];
 
 $hkrt['sign_string']='';
 ksort($hkrt['request']);
