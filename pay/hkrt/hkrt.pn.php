@@ -20,7 +20,6 @@ $hkrt['request']['terminal_address']='上海市-上海市-浦东新区-五星路
 $hkrt['request']['sn']=md5($hkrt['request']['terminal_address']);
 $hkrt['request']['code']='11';
 
-
 $hkrt['sign_string']='';
 ksort($hkrt['request']);
 foreach($hkrt['request'] as $key=>$val){ if(strtolower($key)!='sign' && strlen($val)>0){$hkrt['sign_string'].='&'.$key.'='.$val;} }
@@ -30,6 +29,7 @@ $hkrt['request_string']=json_encode($hkrt['request'],JSON_UNESCAPED_UNICODE);
 $hkrt['response_string']=file_get_contents($hkrt['host'].$hkrt['path'], false, stream_context_create(array('http'=>array('method'=>'POST','header'=>"Content-type:application/json;charset=UTF-8",'content'=>$hkrt['request_string']),'ssl'=>array('verify_peer'=>false, 'verify_peer_name'=>false))));
 $hkrt['response']=json_decode($hkrt['response_string'], true);
 
+echo('<h1>修改config文件中merch_no_pn参数，商户号'.$hkrt['request']['merch_no'].'对应的值为：'.$hkrt['response']['sn'].'</h1>');
 exit(json_encode($hkrt,JSON_UNESCAPED_UNICODE));
 
 ?>
