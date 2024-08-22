@@ -18,6 +18,7 @@ $hkrt['request']['notify_url']='http'.($_SERVER["SERVER_PORT"]==443?'s':'').'://
 $hkrt['request']['notify_url']='http://www.meak.cn/callback/';
 //通过hkrt.pn.php接口获取后，配置到config文件中，和申请时的merch_no要一一对应
 $hkrt['request']['pn']=$hkrt['merch_no_pn'][$hkrt['request']['merch_no']];
+$hkrt['request']['extend_params']=['subject'=>'单号：'.$hkrt['request']['out_trade_no']];
 
 $hkrt['sign_string']='';
 ksort($hkrt['request']);
