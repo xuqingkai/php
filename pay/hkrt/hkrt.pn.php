@@ -29,7 +29,7 @@ $hkrt['request_string']=json_encode($hkrt['request'],JSON_UNESCAPED_UNICODE);
 $hkrt['response_string']=file_get_contents($hkrt['host'].$hkrt['path'], false, stream_context_create(array('http'=>array('method'=>'POST','header'=>"Content-type:application/json;charset=UTF-8",'content'=>$hkrt['request_string']),'ssl'=>array('verify_peer'=>false, 'verify_peer_name'=>false))));
 $hkrt['response']=json_decode($hkrt['response_string'], true);
 
-echo('<h1>修改config文件中merch_no_pn参数，商户号'.$hkrt['request']['merch_no'].'对应的值为：'.$hkrt['response']['sn'].'</h1>');
+echo('<h1>修改config文件中merch_no_pn参数，商户号'.$hkrt['request']['merch_no'].'对应的值为：'.$hkrt['response']['pn'].'</h1>');
 exit(json_encode($hkrt,JSON_UNESCAPED_UNICODE));
 
 ?>
