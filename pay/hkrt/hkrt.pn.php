@@ -7,7 +7,12 @@ $hkrt['path']='/api/v1/merchant-terminal/new-bind';
 
 $hkrt['request']=[];
 $hkrt['request']['agent_no']=$hkrt['agent_no'];
-$hkrt['request']['merch_no']=$hkrt['merch_no'];
+foreach($hkrt['merch_no_pn'] as $merch_no=>$pn){
+    if(strlen($pn)==0){
+        $hkrt['request']['merch_no']=$merch_no.'';
+        break;
+    }
+}
 $hkrt['request']['accessid']=$hkrt['accessid'];
 
 $hkrt['request']['agent_apply_no']=date('YmdHis').rand(10000,99999);
