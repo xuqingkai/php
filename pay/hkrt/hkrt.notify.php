@@ -9,8 +9,8 @@ foreach($hkrt['request'] as $key=>$val){ if(strtolower($key)!='sign' && strlen($
 $hkrt['sign_string']=substr($hkrt['sign_string'],1).$hkrt['accesskey'];
 
 $hkrt['sign']=strtoupper(md5($hkrt['sign_string']));
-if($hkrt['request']['sign']!=$hkrt['sign']){ exit('{"return_code":"SIGN_ERROR","return_msg":"签名错误"}'); }
-if($hkrt['request']['trade_status']!='1'){ exit('{"return_code":"TRADE_STATUS_ERROR","return_msg":"交易状态非1"}'); }
+if($hkrt['request']['sign']!=$hkrt['sign']){ exit('{"return_code":"FAIL","return_msg":"SIGN_ERROR"}'); }
+if($hkrt['request']['trade_status']!='1'){ exit('{"return_code":"FAIL","return_msg":"TRADE_STATUS_ERROR"}'); }
 
 $hkrt['request']['out_trade_no'];//商户本地单号
 $hkrt['request']['trade_no'];//上级接口单号
