@@ -72,7 +72,7 @@ function handler($event, $context) {
       $content = $body;
 
       $text="\r\n\r\n";
-      $text.=date('Y-m-d H:i:s')."\r\n";
+      $text.=date('Y-m-d H:i:s').'.'.substr(microtime(true).'',11)."\r\n";
       $text.="-----【URL】------------------------------------------------------------------\r\n";
       $text.=$evt['rawPath'].'?'.http_build_query($query)."\r\n";
       $text.="-----【HEADER】------------------------------------------------------------------\r\n";
