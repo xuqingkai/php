@@ -53,7 +53,7 @@ if(isset($query['view'])){
         
         
     $text="\r\n\r\n";
-    $text.=date('Y-m-d H:i:s').'.'.substr(microtime(true).'',11)"\r\n";
+    $text.=date('Y-m-d H:i:s').'.'.substr(microtime(true).'',11)."\r\n";
     $text.="-----【URL】------------------------------------------------------------------\r\n";
     $text.=$_SERVER['REQUEST_URI']."\r\n";
     $text.="-----【REQUEST_HEADER】------------------------------------------------------------------\r\n";
