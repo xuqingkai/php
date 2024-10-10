@@ -1,0 +1,22 @@
+{
+  "real_name":"测试员",
+  "gender":"MALE",
+  "age":18,
+  "birthday":"1988-08-08"
+  "is_student":false,
+  "schools":[
+    {
+      "name":"BEIJING UNIVERSITY",
+      "begin_year":2006
+    },{
+      "name":"BEIJING UNIVERSITY",
+      "begin_year":2006
+    },{
+      "name":"BEIJING UNIVERSITY",
+      "begin_year":2006
+    },{
+      "name":"BEIJING UNIVERSITY",
+      "begin_year":2006
+    }
+  ]
+}
