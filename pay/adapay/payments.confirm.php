@@ -16,4 +16,10 @@ $adapay['data']['div_members'][]=['member_id'=>'test','amount'=>'100.00','fee_fl
 $adapay['response_data']=adapay_request();
 $adapay['response']=json_decode($adapay['response_data'], true);
 $adapay['response']['data']=json_decode($adapay['response']['data'], true);
-exit(json_encode($adapay));
+
+header('Content-Type: application/json; charset=utf-8');
+if($adapay['response']['data']['status']=='succeeded'){
+    exit(json_encode($adapay['response']['data']));
+}else{
+    exit(json_encode($adapay));
+}
