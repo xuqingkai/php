@@ -5,10 +5,11 @@ $adapay['api_path']='/v1/cashs';
 
 $adapay['data']=[];
 $adapay['data']['app_id']=$adapay['api_id'];
-$adapay['data']['order_no']=$_GET['order_no'];
+$adapay['data']['order_no']='tixian'.date('YmdHis');
 $adapay['data']['cash_type']='DM';
 $adapay['data']['cash_amt']='1.00';
-$adapay['data']['member_id']=$adapay['member_id'];
+$adapay['data']['member_id']='test';
+
 $adapay['request_data']=json_encode($adapay['data']);
 
 $adapay['response_data']=adapay_request();
