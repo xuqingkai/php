@@ -21,5 +21,6 @@ file_put_contents('cashs_'.$adapay['data']['member_id'].'.txt', json_encode($ada
 if($adapay['response']['data']['status']=='succeeded'){
     exit('<a href="cashs.stat.php?order_no='.$adapay['response']['data']['order_no'].'">'.$adapay['response']['data']['order_no'].'</a>');
 }else{
+    header('Content-Type: application/json; charset=utf-8');
     exit(json_encode($adapay));
 } 
