@@ -25,6 +25,7 @@ if($post){
         echo($adapay['response']['data']['account_info']);
         exit('<a href="payments.list.php?member_id='.$adapay['data']['member_id'].'">'.$adapay['data']['member_id'].'</a>');
     }else{
+	header('Content-Type: application/json; charset=utf-8');
         exit(json_encode($adapay));
     }
 }
