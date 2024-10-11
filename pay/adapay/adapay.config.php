@@ -5,7 +5,6 @@ $adapay['mch_rsa_private']='';
 $adapay['api_rsa_public']='';
 $adapay['api_host']='https://api.adapay.tech';
 
-
 function adapay_request(){
     global $adapay;
     $url=$adapay['api_host'].$adapay['api_path'];
@@ -24,6 +23,8 @@ function adapay_request(){
     //exit(implode("-----", $headers));
     if($adapay['api_method']=='GET'){
         $url.='?'.$data;
+    }else{
+        array_push($headers, "Content-Type: application/json");
     }
   	$curl = curl_init($url);
   	curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
