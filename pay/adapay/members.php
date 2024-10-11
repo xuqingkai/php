@@ -18,6 +18,7 @@ if($post){
     if($adapay['response']['data']['status']=='succeeded'){
         exit('<a href="settle_accounts.php?member_id='.$adapay['response']['data']['member_id'].'">'.$adapay['response']['data']['member_id'].'</a>');
     }else{
+	header('Content-Type: application/json; charset=utf-8');
         exit(json_encode($adapay));
     }
 }
