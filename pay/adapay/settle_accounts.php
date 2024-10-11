@@ -12,11 +12,6 @@ if($post){
     $adapay['data']['channel']='bank_account';
     $adapay['data']['account_info']=$post;
     
-    //$adapay['data']['account_info']['bank_name']='中国建设银行';
-    //$adapay['data']['account_info']['card_id']='6215340301439741181';
-    //$adapay['data']['account_info']['card_name']='丁家倍';
-    //$adapay['data']['account_info']['cert_id']='410727200207095037';
-    //$adapay['data']['account_info']['tel_no']='16634836559';
     $adapay['data']['account_info']['bank_acct_type']='2';
     $adapay['data']['account_info']['cert_type']='00';
     
