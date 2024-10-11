@@ -6,7 +6,7 @@ $adapay['api_method']='POST';
 
 $adapay['data']=[];
 $adapay['data']['app_id']=$adapay['api_id'];
-$adapay['data']['order_no']='tixian'.date('YmdHis');
+$adapay['data']['order_no']='cashs'.date('YmdHis');
 $adapay['data']['cash_type']='DM';
 $adapay['data']['cash_amt']='1.00';
 $adapay['data']['member_id']='test';
