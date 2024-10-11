@@ -1,4 +1,5 @@
 <?php
+//https://doc.adapay.tech/document/api/#/settlement?id=%e5%88%9b%e5%bb%ba%e5%8f%96%e7%8e%b0%e5%af%b9%e8%b1%a1
 error_reporting(E_ALL);//都显示
 include_once('adapay.config.php');
 $adapay['api_path']='/v1/cashs';
