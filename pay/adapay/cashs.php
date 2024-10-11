@@ -17,4 +17,4 @@ $adapay['response_data']=adapay_request();
 $adapay['response']=json_decode($adapay['response_data'], true);
 $adapay['response']['data']=json_decode($adapay['response']['data'], true);
 file_put_contents('cashs_'.$adapay['data']['member_id'].'.txt', json_encode($adapay));
-exit($adapay['response_data']);
+exit(json_encode($adapay));
