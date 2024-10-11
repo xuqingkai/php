@@ -14,6 +14,7 @@ $adapay['response_data']=adapay_request();
 $adapay['response']=json_decode($adapay['response_data'], true);
 $adapay['response']['data']=json_decode($adapay['response']['data'], true);
 
+header('Content-Type: application/json; charset=utf-8');
 if($adapay['response']['data']['status']=='succeeded'){
     exit(json_encode($adapay['response']['data']));
 }else{
