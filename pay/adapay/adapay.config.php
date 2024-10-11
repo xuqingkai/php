@@ -17,15 +17,16 @@ function adapay_request(){
     openssl_sign($url.$data, $signature, $rsa_private_key, OPENSSL_ALGO_SHA1);
     //exit(base64_encode($signature));
     $adapay['sign_string']=$url.$data;
-    $adapay['signature']=base64_encode($signature);
-    $adapay['authorization']=$adapay['api_key'];
-    $headers=array("Content-Type: application/json", "Content-Length: ".strlen($data), "Authorization: ".$adapay['api_key'], "Signature: ".$adapay['signature']);
+    $headers=array("Authorization: ".$adapay['api_key'], "Signature: ".base64_encode($signature));
     //exit(implode("-----", $headers));
     if($adapay['api_method']=='GET'){
         $url.='?'.$data;
     }else{
         array_push($headers, "Content-Type: application/json");
     }
+    $adapay['request_url']=$url;
+    $adapay['header']=$headers;
+    
   	$curl = curl_init($url);
   	curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
   	curl_setopt($curl, CURLOPT_HEADER, false);//是否返回headers信息
