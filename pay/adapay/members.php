@@ -10,6 +10,7 @@ if($post){
     $adapay['data']['app_id']=$adapay['api_id'];
     $adapay['data']['member_id']=$post['member_id'] ?? 'mid'.date('YmdHis');
     //$adapay['data']['nickname']='';
+    //$adapay['data']['user_name']='';
 	
     //{"data":"{\"app_id\":\"\",\"created_time\":\"1728552251\",\"disabled\":\"N\",\"identified\":\"N\",\"member_id\":\"\",\"object\":\"member\",\"status\":\"succeeded\",\"prod_mode\":\"true\"}","signature":""}
     $adapay['response_data']=adapay_request();
