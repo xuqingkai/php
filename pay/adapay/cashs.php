@@ -2,6 +2,7 @@
 error_reporting(E_ALL);//都显示
 include_once('adapay.config.php');
 $adapay['api_path']='/v1/cashs';
+$adapay['api_method']='POST';
 
 $adapay['data']=[];
 $adapay['data']['app_id']=$adapay['api_id'];
