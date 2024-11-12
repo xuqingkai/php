@@ -48,7 +48,7 @@ if($db){
         </div>
         <div class="uk-grid-collapse uk-flex-middle" uk-grid>
             <div class="uk-width-1-4 uk-width-1-6@s uk-padding-small uk-text-right">主机</div>
-            <div class="uk-width-expand"><input class="uk-input" type="text" name="hostname" value=""></div>
+            <div class="uk-width-expand"><input class="uk-input" type="text" name="hostname" value="127.0.0.1"></div>
         </div>
         <div class="uk-grid-collapse uk-flex-middle" uk-grid>
             <div class="uk-width-1-4 uk-width-1-6@s uk-padding-small uk-text-right">端口</div>
