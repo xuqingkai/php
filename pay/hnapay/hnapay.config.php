@@ -34,6 +34,26 @@ if(strpos($hnapay['public_key'], 'PUBLIC KEY')===false){
 5.4、5.7--付款密钥
 */
 
+/*
+上述密钥下载后是个jks文件和一个说明文件（内含各种密码），需要按照以下炒作转为pen格式
+- 安装OpenSSL
+- 在jks文件所在目录下，执行以下命令，先转为pfx格式文件
+- 其中000000为存储密码、111111为别名密码，会提示再次输入密码（第三个），如:222222
+
+```
+keytool -v -importkeystore -srckeystore demo.jks -srcstoretype jks -srcstorepass 000000 -destkeystore demo.pfx -deststoretype pkcs12 -deststorepass 000000 -destkeypass 111111
+```
+
+- 再进入到OpenSSL安装目录下的bin目录，执行以下代码，转为key格式
+- 会提示输入一个密码，也就是前面的存储密码：000000
+  
+```
+./openssl.exe pkcs12 -in demo.pfx -nocerts -nodes -out demo.key
+```
+- 生成的demo.key里就有pem格式密钥
+
+*/
+
 //微信报备编号 https://merchant.hnapay.com
 $hnapay['weChatMchId']='';
 //微信接口付款公钥
@@ -55,4 +75,11 @@ $hnapay['alipay_public_key']='-----BEGIN PUBLIC KEY-----
 -----END PUBLIC KEY-----';
 //支付宝商户私钥
 $hnapay['alipay_private_key']='-----BEGIN RSA PRIVATE KEY-----
+-----END RSA PRIVATE KEY-----';
+
+//云闪付商户私钥
+$hnapay['unionpay_public_key']='-----BEGIN PUBLIC KEY-----
+-----END PUBLIC KEY-----';
+//云闪付商商户私钥
+$hnapay['unionpay_private_key']='-----BEGIN RSA PRIVATE KEY-----
 -----END RSA PRIVATE KEY-----';

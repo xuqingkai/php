@@ -10,6 +10,6 @@
     <script src="https://cdn.jsdelivr.net/npm/uikit/dist/js/uikit-icons.min.js"></script>
 </head>
 <body>
-  
+  <?php echo(date('Y-m-d H:i:s')); ?>
 </body>
 </html>
