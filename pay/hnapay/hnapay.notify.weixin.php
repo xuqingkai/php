@@ -15,6 +15,9 @@ $hnapay['sign_str'].='respCode=['.$hnapay['data']['respCode'].']';
 $hnapay['sign_str'].='charset=['.$hnapay['data']['charset'].']';
 $hnapay['sign_str'].='signType=['.$hnapay['data']['signType'].']';
 
+//tranCode=[]version=[]merId=[]merOrderNum=[]tranAmt=[]submitTime=[]hnapayOrderId=[]tranFinishTime=[]respCode=[]charset=[]signType=[]
+
+  
 $hnapay['public_rsa']=openssl_get_publickey($hnapay['public_key']);
 $hnapay['sign_verify']=(bool)openssl_verify($hnapay['sign_str'], hex2bin($hnapay['data']['signMsg']), $hnapay['public_rsa'], version_compare(PHP_VERSION,'5.4.8','>=') ? OPENSSL_ALGO_SHA1 : SHA1);
 
