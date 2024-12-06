@@ -9,10 +9,13 @@ $hnapay['host']='https://gateway.hnapay.com';
 //https://portal.hnapay.com/
 $hnapay['merId']='';
 
+//微信报备编号 https://merchant.hnapay.com
+$hnapay['weChatMchId']='';
+//支付宝报备编号 https://merchant.hnapay.com
+$hnapay['merchantId']='';
 
-//接口付款公钥，位于demo里
-$hnapay['public_key']='./test.cer';
-if(is_file($hnapay['public_key'])){ $hnapay['public_key'] = file_get_contents($hnapay['public_key']);}
+//接口公钥
+$hnapay['public_key']='';
 if(strpos($hnapay['public_key'], 'PUBLIC KEY')===false){
   $hnapay['public_key'] = "-----BEGIN PUBLIC KEY-----\n".wordwrap($hnapay['public_key'], 64, "\n", true)."\n-----END PUBLIC KEY-----";
   //$hnapay['public_key'] = "-----BEGIN CERTIFICATE-----\n".chunk_split($hnapay['public_key'], 64, "\n")."\n-----BEGIN CERTIFICATE-----";
@@ -54,32 +57,14 @@ keytool -v -importkeystore -srckeystore demo.jks -srcstoretype jks -srcstorepass
 
 */
 
-//微信报备编号 https://merchant.hnapay.com
-$hnapay['weChatMchId']='';
-//微信接口付款公钥
-$hnapay['weixin_public_key']='-----BEGIN PUBLIC KEY-----
------END PUBLIC KEY-----';
-if(is_file($hnapay['weixin_public_key'])){ $hnapay['weixin_public_key'] = file_get_contents($hnapay['weixin_public_key']);}
-if(strpos($hnapay['weixin_public_key'], 'PUBLIC KEY')===false){
-  $hnapay['weixin_public_key'] = "-----BEGIN PUBLIC KEY-----\n".wordwrap($hnapay['weixin_public_key'], 64, "\n", true)."\n-----END PUBLIC KEY-----";
-  //$hnapay['weixin_public_key'] = "-----BEGIN CERTIFICATE-----\n".chunk_split($hnapay['weixin_public_key'], 64, "\n")."\n-----BEGIN CERTIFICATE-----";
-}
-//微信商户私钥，jks文件转pem过来
-$hnapay['weixin_private_key']='-----BEGIN RSA PRIVATE KEY-----
+//新收款密钥
+$hnapay['xinshoukuan_private_key']='-----BEGIN RSA PRIVATE KEY-----
 -----END RSA PRIVATE KEY-----';
 
-//支付宝报备编号 https://merchant.hnapay.com
-$hnapay['merchantId']='';
-//支付宝接口付款公钥
-$hnapay['alipay_public_key']='-----BEGIN PUBLIC KEY-----
------END PUBLIC KEY-----';
-//支付宝商户私钥
-$hnapay['alipay_private_key']='-----BEGIN RSA PRIVATE KEY-----
+//收款密钥
+$hnapay['shoukuan_private_key']='-----BEGIN RSA PRIVATE KEY-----
 -----END RSA PRIVATE KEY-----';
 
-//云闪付商户私钥
-$hnapay['unionpay_public_key']='-----BEGIN PUBLIC KEY-----
------END PUBLIC KEY-----';
-//云闪付商商户私钥
-$hnapay['unionpay_private_key']='-----BEGIN RSA PRIVATE KEY-----
+//付款密钥
+$hnapay['fukuan_private_key']='-----BEGIN RSA PRIVATE KEY-----
 -----END RSA PRIVATE KEY-----';
