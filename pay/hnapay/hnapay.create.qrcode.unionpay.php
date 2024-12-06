@@ -16,7 +16,7 @@ $hnapay['data']['notifyUrl']='http'.(isset($_SERVER["HTTPS"])?'s':'').'://'.$_SE
 $hnapay['data']['charset']='1';//1：UTF-8
 $hnapay['data']['signType']='1';//1：RSA，3：国密交易证书，4：国密密钥
 
-//exit(json_encode($hnapay));
+//exit(json_encode($hnapay, JSON_UNESCAPED_UNICODE));
 
 $hnapay['sign_str']='';
 $hnapay['sign_str'].='tranCode=['.$hnapay['data']['tranCode'].']';
