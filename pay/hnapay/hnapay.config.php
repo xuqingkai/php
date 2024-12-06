@@ -11,15 +11,9 @@ $hnapay['merId']='';
 
 //微信报备编号 https://merchant.hnapay.com
 $hnapay['weChatMchId']='';
+
 //支付宝报备编号 https://merchant.hnapay.com
 $hnapay['merchantId']='';
-
-//接口公钥
-$hnapay['public_key']='';
-if(strpos($hnapay['public_key'], 'PUBLIC KEY')===false){
-  $hnapay['public_key'] = "-----BEGIN PUBLIC KEY-----\n".wordwrap($hnapay['public_key'], 64, "\n", true)."\n-----END PUBLIC KEY-----";
-  //$hnapay['public_key'] = "-----BEGIN CERTIFICATE-----\n".chunk_split($hnapay['public_key'], 64, "\n")."\n-----BEGIN CERTIFICATE-----";
-}
 
 /*
 5.1 微信公众号&支付宝生活号
@@ -56,6 +50,8 @@ keytool -v -importkeystore -srckeystore demo.jks -srcstoretype jks -srcstorepass
 - 生成的demo.key里就有pem格式密钥
 
 */
+//接口公钥
+$hnapay['public_key']='';
 
 //新收款密钥
 $hnapay['xinshoukuan_private_key']='-----BEGIN RSA PRIVATE KEY-----
