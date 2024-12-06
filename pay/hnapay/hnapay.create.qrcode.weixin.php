@@ -57,6 +57,6 @@ if($hnapay['response']['resultCode']=='0000'){
     $hnapay['qrCodeUrl']=explode('&sign=',$hnapay['qrCodeUrl'])[0];
     exit($hnapay['qrCodeUrl'].'<br /><img src="'.$hnapay['response']['qrCodeUrl'].'" />');
 }else{
-    exit(json_encode($hnapay));
+    exit(json_encode($hnapay, JSON_UNESCAPED_UNICODE));
 }
 
