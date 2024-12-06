@@ -19,6 +19,7 @@ $hnapay['sign_verify']=(bool)openssl_verify($hnapay['sign_str'], base64_decode($
 
 if(!$hnapay['sign_verify']){ exit('RespCode=500'); }
 if($hnapay['data']['resultCode']!='0000'){ exit('RespCode=501'); }
+file_put_contents('notify.txt', json_encode($hnapay, JSON_UNESCAPED_UNICODE));
 exit('RespCode=200');
 
 /*
