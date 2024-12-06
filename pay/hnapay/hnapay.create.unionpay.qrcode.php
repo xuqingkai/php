@@ -31,7 +31,7 @@ $hnapay['sign_str'].='notifyUrl=['.$hnapay['data']['notifyUrl'].']';
 $hnapay['sign_str'].='charset=['.$hnapay['data']['charset'].']';
 $hnapay['sign_str'].='signType=['.$hnapay['data']['signType'].']';
 
-openssl_sign($hnapay['sign_str'], $hnapay['data']['signMsg'], wordwrap($hnapay['shoukuan_private_key'], version_compare(PHP_VERSION,'5.4.8','>=') ? OPENSSL_ALGO_SHA1 : SHA1);
+openssl_sign($hnapay['sign_str'], $hnapay['data']['signMsg'], $hnapay['shoukuan_private_key'], version_compare(PHP_VERSION,'5.4.8','>=') ? OPENSSL_ALGO_SHA1 : SHA1);
 //$hnapay['data']['signMsg']=base64_encode($hnapay['data']['signMsg']);
 $hnapay['data']['signMsg']=bin2hex($hnapay['data']['signMsg']);
 $hnapay['data']['signMsg']=strtoupper($hnapay['data']['signMsg']);
