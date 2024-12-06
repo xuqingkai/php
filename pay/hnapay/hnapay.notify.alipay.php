@@ -5,14 +5,14 @@ $hnapay['data']=$_POST;
 $hnapay['sign_str']='';
 $hnapay['sign_str'].='version=['.$hnapay['data']['version'].']';
 $hnapay['sign_str'].='tranCode=['.$hnapay['data']['tranCode'].']';
-$hnapay['sign_str'].='merId=['.$hnapay['data']['merId'].']';
 $hnapay['sign_str'].='merOrderId=['.$hnapay['data']['merOrderId'].']';
-$hnapay['sign_str'].='submitTime=['.$hnapay['data']['submitTime'].']';
-$hnapay['sign_str'].='signType=['.$hnapay['data']['signType'].']';
+$hnapay['sign_str'].='merId=['.$hnapay['data']['merId'].']';
 $hnapay['sign_str'].='charset=['.$hnapay['data']['charset'].']';
-$hnapay['sign_str'].='msgCiphertext=['.$hnapay['data']['msgCiphertext].']';
+$hnapay['sign_str'].='signType=['.$hnapay['data']['signType'].']';
+$hnapay['sign_str'].='resultCode=['.$hnapay['data']['resultCode'].']';
+$hnapay['sign_str'].='hnapayOrderId=['.$hnapay['data']['hnapayOrderId'].']';
 
-//version=[]tranCode=[]merId=[]merOrderId=[]submitTime=[]signType=[]charset=[]msgCiphertext=[]
+//version=[]tranCode=[]merOrderId=[]merId=[]charset=[]signType=[]resultCode=[]hnapayOrderId=[]
 
 $hnapay['public_rsa']=openssl_get_publickey($hnapay['public_key']);
 $hnapay['sign_verify']=(bool)openssl_verify($hnapay['sign_str'], base64_decode($hnapay['data']['signValue']), $hnapay['public_rsa'], version_compare(PHP_VERSION,'5.4.8','>=') ? OPENSSL_ALGO_SHA1 : SHA1);
