@@ -29,10 +29,10 @@ $hnapay['msgCiphertext']['merUserIp']=$_SERVER['REMOTE_ADDR'];
 $hnapay['msgCiphertext']['payLimit']='';
 
 $hnapay['encrypted']=array();
-foreach(str_split(json_encode($hnapay['msgCiphertext'], JSON_UNESCAPED_UNICODE), 117) as $hnapay['item']){
-    $hnapay['item_encrypted']='';
-    openssl_public_encrypt($hnapay['item'], $hnapay['item_encrypted'], $hnapay['public_key']);
-    $hnapay['encrypted'][]=$hnapay['item_encrypted'];
+foreach(str_split(json_encode($hnapay['msgCiphertext'], JSON_UNESCAPED_UNICODE), 117) as $hnapay_item){
+    $hnapay_item_encrypted='';
+    openssl_public_encrypt($hnapay_item,$hnapay_item_encrypted, openssl_get_publickey($hnapay['public_key']));
+    $hnapay['encrypted'][]=base64_encode($hnapay_item_encrypted);
 }
 $hnapay['data']['msgCiphertext']=base64_encode(implode('',$hnapay['encrypted']), JSON_UNESCAPED_UNICODE);
 $hnapay['data']['signType']='1';//1：RSA，3：国密交易证书，4：国密密钥
