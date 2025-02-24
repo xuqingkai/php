@@ -52,6 +52,7 @@ keytool -v -importkeystore -srckeystore demo.jks -srcstoretype jks -srcstorepass
 */
 //接口公钥
 $hnapay['public_key']='';
+$hnapay['public_key']=base64_encode(hex2bin($hnapay['public_key']));
 
 //新收款密钥
 $hnapay['xinshoukuan_private_key']='-----BEGIN RSA PRIVATE KEY-----
