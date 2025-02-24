@@ -34,7 +34,7 @@ foreach(str_split(json_encode($hnapay['msgCiphertext'], JSON_UNESCAPED_UNICODE),
     openssl_public_encrypt($hnapay_item,$hnapay_item_encrypted, openssl_get_publickey($hnapay['public_key']));
     $hnapay['encrypted'][]=base64_encode($hnapay_item_encrypted);
 }
-$hnapay['data']['msgCiphertext']=base64_encode(implode('',$hnapay['encrypted']), JSON_UNESCAPED_UNICODE);
+$hnapay['data']['msgCiphertext']=base64_encode(implode('',$hnapay['encrypted']));
 $hnapay['data']['signType']='1';//1：RSA，3：国密交易证书，4：国密密钥
 $hnapay['data']['merAttach']='merAttach';//1：UTF-8
 $hnapay['data']['charset']='1';//1：UTF-8
