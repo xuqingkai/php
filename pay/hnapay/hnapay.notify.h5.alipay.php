@@ -14,8 +14,7 @@ $hnapay['sign_str'].='hnapayOrderId=['.$hnapay['data']['hnapayOrderId'].']';
 
 //version=[]tranCode=[]merOrderId=[]merId=[]charset=[]signType=[]resultCode=[]hnapayOrderId=[]
 
-$hnapay['public_rsa']=openssl_get_publickey("-----BEGIN PUBLIC KEY-----\n".wordwrap(base64_encode(hex2bin($hnapay['public_key'])), 64, "\n", true)."\n-----END PUBLIC KEY-----");
-$hnapay['sign_verify']=(bool)openssl_verify($hnapay['sign_str'], base64_decode($hnapay['data']['signValue']), $hnapay['public_rsa'], version_compare(PHP_VERSION,'5.4.8','>=') ? OPENSSL_ALGO_SHA1 : SHA1);
+$hnapay['sign_verify']=(bool)openssl_verify($hnapay['sign_str'], base64_decode($hnapay['data']['signValue']), openssl_get_publickey($hnapay['public_key']), version_compare(PHP_VERSION,'5.4.8','>=') ? OPENSSL_ALGO_SHA1 : SHA1);
 
 if(!$hnapay['sign_verify']){ exit('RespCode=500'); }
 if($hnapay['data']['resultCode']!='0000'){ exit('RespCode=501'); }
