@@ -49,7 +49,7 @@ $hnapay['sign_str'].='signType=['.$hnapay['data']['signType'].']';
 $hnapay['sign_str'].='charset=['.$hnapay['data']['charset'].']';
 $hnapay['sign_str'].='msgCiphertext=['.$hnapay['data']['msgCiphertext'].']';
 
-openssl_sign($hnapay['sign_str'], $hnapay['data']['signValue'], $hnapay['xinshoukuan_private_key'], 64, "\n", true), version_compare(PHP_VERSION,'5.4.8','>=') ? OPENSSL_ALGO_SHA1 : SHA1);
+openssl_sign($hnapay['sign_str'], $hnapay['data']['signValue'], $hnapay['xinshoukuan_private_key'], version_compare(PHP_VERSION,'5.4.8','>=') ? OPENSSL_ALGO_SHA1 : SHA1);
 $hnapay['data']['signValue']=base64_encode($hnapay['data']['signValue'], JSON_UNESCAPED_UNICODE);
     
 $html='<form action="'.$hnapay['host'].'/multipay/h5.do'.'" method="post" target="_blank">';
