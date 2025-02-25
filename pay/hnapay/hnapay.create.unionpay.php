@@ -81,7 +81,7 @@ if(!isset($post['mobile_no'])){
     )
     )));
     $hnapay['response']=json_decode($hnapay['response_string'],true);
-    if($hnapay['response']['resultCode']!='0'){exit(json_encode($hnapay));}
+    if($hnapay['response']['resultCode']!='0000'){exit(json_encode($hnapay['response']['errorMsg']));}
     //exit(json_encode($hnapay['response']));
     $hnapay['card']['merOrderId']='下单单号';
     $post['merOrderId']=$hnapay['data']['merOrderId'];
@@ -145,8 +145,8 @@ if(!isset($post['mobile_no'])){
     )
     )));
     $hnapay['response']=json_decode($hnapay['response_string'],true);
-    exit(json_encode($hnapay));
-
+    if($hnapay['response']['resultCode']!='0000'){exit(json_encode($hnapay['response']['errorMsg']));}
+    exit('支付完成，请耐心等待跳转。');
 }
 $html='<form action="" method="post" target="_blank">';
 foreach($hnapay['card'] as $key=>$name){
