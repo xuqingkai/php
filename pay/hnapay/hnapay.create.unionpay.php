@@ -46,8 +46,8 @@ if(!isset($post['mobile_no'])){
     $hnapay_encrypted='';
     //exit(json_encode($hnapay['msgCiphertext'], JSON_UNESCAPED_UNICODE));
     foreach(str_split(json_encode($hnapay['msgCiphertext'], JSON_UNESCAPED_UNICODE), 117) as $hnapay_item){
-    openssl_public_encrypt($hnapay_item,$hnapay_item_encrypted, openssl_get_publickey($hnapay['public_key']));
-    $hnapay_encrypted.=$hnapay_item_encrypted;
+        openssl_public_encrypt($hnapay_item,$hnapay_item_encrypted, openssl_get_publickey($hnapay['public_key']));
+        $hnapay_encrypted.=$hnapay_item_encrypted;
     }
     $hnapay['data']['msgCiphertext']=base64_encode($hnapay_encrypted);
     //$hnapay['data']['msgCiphertext']=base64_encode("sdasdasd");
@@ -81,7 +81,7 @@ if(!isset($post['mobile_no'])){
     )
     )));
     $hnapay['response']=json_decode($hnapay['response_string'],true);
-    if($hnapay['response']['resultCode']!='0000'){exit(json_encode($hnapay['response']['errorMsg']));}
+    if($hnapay['response']['resultCode']!='0000'){exit($hnapay['response']['errorMsg']);}
     //exit(json_encode($hnapay['response']));
     $hnapay['card']['merOrderId']='下单单号';
     $post['merOrderId']=$hnapay['data']['merOrderId'];
@@ -109,8 +109,8 @@ if(!isset($post['mobile_no'])){
     $hnapay_encrypted='';
     //exit(json_encode($hnapay['msgCiphertext'], JSON_UNESCAPED_UNICODE));
     foreach(str_split(json_encode($hnapay['msgCiphertext'], JSON_UNESCAPED_UNICODE), 117) as $hnapay_item){
-    openssl_public_encrypt($hnapay_item,$hnapay_item_encrypted, openssl_get_publickey($hnapay['public_key']));
-    $hnapay_encrypted.=$hnapay_item_encrypted;
+        openssl_public_encrypt($hnapay_item,$hnapay_item_encrypted, openssl_get_publickey($hnapay['public_key']));
+        $hnapay_encrypted.=$hnapay_item_encrypted;
     }
     
     $hnapay['data']['msgCiphertext']=base64_encode($hnapay_encrypted);
@@ -130,9 +130,7 @@ if(!isset($post['mobile_no'])){
     $hnapay['sign_str'].='msgCiphertext=['.$hnapay['data']['msgCiphertext'].']';
     
     openssl_sign($hnapay['sign_str'], $hnapay['data']['signValue'], $hnapay['xinshoukuan_private_key'], OPENSSL_ALGO_SHA1);
-    
     $hnapay['data']['signValue']=base64_encode($hnapay['data']['signValue']);
-    
     $hnapay['response_string']=file_get_contents($hnapay['host'].$hnapay['path'], false, stream_context_create(array(
     'http' => array(
       'method' => 'POST',
@@ -145,7 +143,7 @@ if(!isset($post['mobile_no'])){
     )
     )));
     $hnapay['response']=json_decode($hnapay['response_string'],true);
-    if($hnapay['response']['resultCode']!='0000' && $hnapay['response']['resultCode']!='9999'){exit(json_encode($hnapay['response']['errorMsg']));}
+    if($hnapay['response']['resultCode']!='0000' && $hnapay['response']['resultCode']!='9999'){exit($hnapay['response']['errorMsg']);}
     exit('支付完成，请耐心等待跳转。');
 }
 $html='<form action="" method="post" target="_blank">';
