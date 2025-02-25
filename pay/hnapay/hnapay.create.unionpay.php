@@ -145,7 +145,7 @@ if(!isset($post['mobile_no'])){
     )
     )));
     $hnapay['response']=json_decode($hnapay['response_string'],true);
-    if($hnapay['response']['resultCode']!='0000'){exit(json_encode($hnapay['response']['errorMsg']));}
+    if($hnapay['response']['resultCode']!='0000' && $hnapay['response']['resultCode']!='9999'){exit(json_encode($hnapay['response']['errorMsg']));}
     exit('支付完成，请耐心等待跳转。');
 }
 $html='<form action="" method="post" target="_blank">';
