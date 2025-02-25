@@ -1,6 +1,6 @@
 <?php
 //接口文档
-//https://www.yuque.com/chenyanfei-sjuaz/uhng8q/uoce7b
+//https://www.yuque.com/chenyanfei-sjuaz/kbvzit/hgtemv
 
 //网关请求地址
 $hnapay['host']='https://gateway.hnapay.com';
@@ -16,19 +16,9 @@ $hnapay['weChatMchId']='';
 $hnapay['merchantId']='';
 
 /*
-5.1 微信公众号&支付宝生活号
-5.2 扫码支付（C扫B）
-5.3 支付宝H5
-5.4 付款到银行
-5.5 查询接口-通用
-5.6 查询接口-扫码API
-5.7 查询接口-代付
-5.8 退款接口
-5.9 扫码支付（B扫C）
-5.10 商户自助进件接口
-5.1、5.3、5.5、5.8、5.9、5.10--新收款密钥     
-5.2、5.6--收款密钥
-5.4、5.7--付款密钥
+新收款密钥：快捷支付，条码支付（B扫C），公众号小程序，聚合H5
+收款密钥：扫码支付，扫码支付（C扫B）
+付款密钥：付款到银行
 */
 
 /*
@@ -52,7 +42,10 @@ keytool -v -importkeystore -srckeystore demo.jks -srcstoretype jks -srcstorepass
 */
 //接口公钥
 $hnapay['public_key']='';
-$hnapay['public_key']=base64_encode(hex2bin($hnapay['public_key']));
+if(strpos($hnapay['public_key'],'-----')!==false){
+  $hnapay['public_key']=base64_encode(hex2bin($hnapay['public_key']));
+  $hnapay['public_key']="-----BEGIN PUBLIC KEY-----\n".wordwrap($hnapay['public_key'], 64, "\n", true)."\n-----END PUBLIC KEY-----";
+}
 
 //新收款密钥
 $hnapay['xinshoukuan_private_key']='-----BEGIN RSA PRIVATE KEY-----
