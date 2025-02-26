@@ -1,7 +1,7 @@
 <?php
 $name='callback';
 $url=$_SERVER['PATH_INFO']??'';
-$headers=[];
+$headers=array();
 if($url){
     if(strpos($url,'/http:/')!==false || strpos($url,'/https:/')!==false){
         $headers=str_replace('/','',substr($url,0,strpos($url,'/http')));
@@ -16,7 +16,7 @@ if($url){
     if($headers){
         $headers=explode('|',str_replace(',','|',$headers));
     }else{
-        $headers=[];
+        $headers=array();
     }
 }
 $file='./'.$name.'.txt';
@@ -31,7 +31,7 @@ if(isset($query['view'])){
     exit('<script type="text/javascript">window.location.href="?view";</script>');
 }else{
     $response=$name;
-    $header=[];
+    $header=array();
     //exit(json_encode($_SERVER));
     foreach($headers as $item){
         $header_key=$item;
