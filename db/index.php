@@ -3,7 +3,7 @@ $db=$_POST;
 
 if($db){
     //exit(json_encode($db, JSON_UNESCAPED_UNICODE));
-    //header('Content-Type: application/json');
+    header('Content-Type: application/json');
     $dsn="mysql:host=".trim($db['hostname']).";port=".trim($db['hostport']).";dbname=".trim($db['database']).";charset=".trim($db['charset']);
     if($db['type']=='sqlite'){ $dsn="sqlite:".trim($db['database']); }
     //exit($dsn);
@@ -11,7 +11,7 @@ if($db){
     try{
         $pdo = new \PDO($dsn, trim($db['username']), trim($db['password']));
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // 设置错误模式为抛出异常
-        $query = $pdo->query($db['sql']);
+        $query = $pdo->query(base64_decode($db['sql']));
         $result = $query->fetchALL(\PDO::FETCH_ASSOC);
         $result=json_encode($result, JSON_UNESCAPED_UNICODE);
     }catch(PDOException $e){
@@ -35,7 +35,7 @@ if($db){
 	</style>
 </head>
 <body>
-	<form class="uk-container" method="post" action="./init.php">
+	<form class="uk-container" method="post" action="<?php echo($_SERVER['SCRIPT_NAME']); ?>">
         <div class="uk-grid-collapse uk-flex-middle" uk-grid>
             <div class="uk-width-1-4 uk-width-1-6@s uk-padding-small uk-text-right">类型</div>
             <div class="uk-width-expand">
