@@ -90,11 +90,21 @@ if($db){
         });
         $('form').submit(function(e){
             e.preventDefault();
-            $.post(window.location.href, $(this).serialize(),function(data){
-                $('#result').text(data);
-
+            let sql = '';
+            (new TextEncoder()).encode($('textarea[name=sql]').val()).forEach((byte) => { sql += String.fromCharCode(byte); });
+		var form={
+			type:$('select[name=type]').val(),
+			hostname:$('input[name=hostname]').val(),
+			hostport:$('input[name=hostport]').val(),
+			database:$('input[name=database]').val(),
+			username:$('input[name=username]').val(),
+			password:$('input[name=password]').val(),
+			charset:$('input[name=charset]').val(),
+			sql:btoa(sql),
+		};
+            $.post(window.location.href, form,function(data){
+                $('#result').text(JSON.stringify(data));
             });
-
         });
     </script>
 </body>
