@@ -115,7 +115,8 @@ if($db){
         $('form').submit(function(e){
             e.preventDefault();
             $.post(window.location.href, $(this).serialize(),function(data){
-                $('#result').prepend('<fieldset><legend>'+new Date()+'</legend><pre>'+data+'</pre></fieldset>');
+                $('#result').prepend('<fieldset><legend>'+new Date()+'</legend><div style="border:1px dashed #ccc;word-wrap: break-word;word-break:break-all;padding:10px;"></div></fieldset>');
+                $('#result div').first().text(data);
             });
         });
     </script>
