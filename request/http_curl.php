@@ -3,7 +3,7 @@
 //error_reporting(0);//都不显示
 //error_reporting(E_ALL);//都显示
 //date_default_timezone_set('PRC');
-function http_curl($url,$body='',$headers=array()){
+function http_curl($url,$body=false,$headers=array()){
     if(!$headers){
         $headers=array(
             'Content-Type:application/x-www-form-urlencode; charset=utf-8',
