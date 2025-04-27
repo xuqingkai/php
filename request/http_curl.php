@@ -11,15 +11,15 @@ function http_curl($url,$body='',$headers=array()){
             'Referer:'.substr($url,0,strpos($url,'/',10))
         );
     }
-    $headers=array_merge(array('Author'=>'xuqingkai'),$headers);
+    $headers=array_merge(array('Author:xuqingkai'),$headers);
 
     $curl = curl_init($url);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($curl, CURLOPT_HEADER, true);//是否返回headers信息
     curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-    curl_setopt($curl, CURLOPT_POST, strlen($body)>0);
+    curl_setopt($curl, CURLOPT_POST,$body!==false);
     //curl_setopt($curl, CURLOPT_ENCODING,'gzip');
-    curl_setopt($curl, CURLOPT_POSTFIELDS , $body);
+    curl_setopt($curl, CURLOPT_POSTFIELDS , $body===false?'':$body);
     curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);//忽略重定向
     curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 10);
     curl_setopt($curl, CURLOPT_TIMEOUT, 10);
