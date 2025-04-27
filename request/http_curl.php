@@ -6,11 +6,12 @@
 function http_curl($url,$body='',$headers=array()){
     if(!$headers){
         $headers=array(
+            'Content-Type:application/x-www-form-urlencode; charset=utf-8',
             'User-Agent:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36 Edg/135.0.0.0',
             'Referer:'.substr($url,0,strpos($url,'/',10))
         );
     }
-    $headers=array_merge($headers, array('Author'=>'xuqingkai'));
+    $headers=array_merge(array('Author'=>'xuqingkai'),$headers);
 
     $curl = curl_init($url);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
@@ -32,6 +33,6 @@ function http_curl($url,$body='',$headers=array()){
     $response_header=explode("\r\n",substr($response_body,0,$header_size));
     $response_body=substr($response_body,$header_size);
     curl_close($curl);
-    return [$error, $response_header, $response_body];
+    return [$error, $response_body, $response_header];
 }
 //list($error, $header, $response)=http_curl();
