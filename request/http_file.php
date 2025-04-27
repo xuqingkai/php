@@ -15,6 +15,7 @@ function http_file($url, $body=false, $headers=array()){
 
     $error=false;
     $response_header=array();
+    $response_body='';
     try{
         $response_body=file_get_contents($url, false, stream_context_create(array(
             'http'=>array(
