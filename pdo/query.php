@@ -7,7 +7,7 @@ function pdo_query($sql,$param=array()){
     global $pdo;
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $error=false;
-    $data=0;
+    $data=false;
     try{
         if($param){//参数模式
             $prepare=$pdo->prepare($sql);
