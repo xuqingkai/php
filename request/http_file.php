@@ -18,9 +18,9 @@ function http_file($url, $body='', $headers=array()){
     try{
         $response_body=file_get_contents($url, false, stream_context_create(array(
             'http'=>array(
-                'method'=>strlen($body)>0?'POST':'GET',
+                'method'=>$body===false?'GET':'POST',
                 'header'=>implode("\r\n",$headers),
-                'content'=>$body
+                'content'=>$body===false?'':$body
             ),
             'ssl'=>array('verify_peer'=>false,'verify_peer_name'=>false)
         )));
