@@ -6,11 +6,12 @@
 function http_file($url, $body='', $headers=array()){
     if(!$headers){
         $headers=array(
+            'Content-Type:application/x-www-form-urlencode; charset=utf-8',
             'User-Agent:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36 Edg/135.0.0.0',
             'Referer:'.substr($url,0,strpos($url,'/',10))
         );
     }
-    $headers=array_merge($headers, array('Author:xuqingkai'));
+    $headers=array_merge(array('Author:xuqingkai'),$headers);
 
     $error=false;
     $response_header=array();
@@ -27,6 +28,6 @@ function http_file($url, $body='', $headers=array()){
     }catch(Exception $ex){
         $error=$ex->getMessage();
     }
-    return [$error, $response_header, $response_body];
+    return [$error, $response_body, $response_header];
 }
 //list($error, $header, $response)=http_curl();
