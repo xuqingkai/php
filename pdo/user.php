@@ -19,6 +19,6 @@ exit($callback.'({
     "id": 0,
     "code": "success",
     "message": "获取成功",
-    "data": '.json_encode($list, JSON_UNESCAPED_UNICODE).'
+    "data": '.json_encode($list, JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE).'
 });');
 ?>
