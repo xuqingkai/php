@@ -94,7 +94,8 @@ if($_SERVER['REQUEST_METHOD']!='GET'){
                 return response.text();
             })
             .then(data => {
-                document.querySelector('#response').insertAdjacentHTML('afterbegin','<fieldset><legend>'+new Date()+'</legend><textarea readonly disabled style="box-sizing:border-box;border:1px dashed #ccc;padding:10px;width:100%;"></textarea></fieldset>');
+                document.querySelector('#response').insertAdjacentHTML('afterbegin','<fieldset><legend>'+new Date().toISOString().substr(0,19).replace('T',' ')
+                    +'</legend><textarea readonly disabled style="box-sizing:border-box;border:1px dashed #ccc;padding:10px;width:100%;"></textarea></fieldset>');
                 let textarea=document.querySelector('#response textarea');
                 textarea.innerText=data;
                 textarea.style.height = textarea.scrollHeight + 'px';

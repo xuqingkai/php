@@ -115,7 +115,8 @@ if($db){
         $('form').submit(function(e){
             e.preventDefault();
             $.post(window.location.href, $(this).serialize(),function(data){
-                $('#result').prepend('<fieldset><legend>'+new Date()+'</legend><textarea readonly disabled style="box-sizing:border-box;border:1px dashed #ccc;padding:10px;width:100%;"></textarea></fieldset>');
+                $('#result').prepend('<fieldset><legend>'+new Date().toISOString().substr(0,19).replace('T',' ')
+                    +'</legend><textarea readonly disabled style="box-sizing:border-box;border:1px dashed #ccc;padding:10px;width:100%;"></textarea></fieldset>');
                 $('#result textarea').first().val(data).height(function(){
                     return $(this).prop('scrollHeight');
                 });

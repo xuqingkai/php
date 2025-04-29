@@ -2,7 +2,7 @@
   "real_name":"测试员",
   "gender":"MALE",
   "age":18,
-  "birthday":"1988-08-08"
+  "birthday":"1988-08-08",
   "is_student":false,
   "schools":[
     {
