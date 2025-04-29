@@ -115,8 +115,10 @@ if($db){
         $('form').submit(function(e){
             e.preventDefault();
             $.post(window.location.href, $(this).serialize(),function(data){
-                $('#result').prepend('<fieldset><legend>'+new Date()+'</legend><div style="border:1px dashed #ccc;word-wrap: break-word;word-break:break-all;padding:10px;"></div></fieldset>');
-                $('#result div').first().text(data);
+                $('#result').prepend('<fieldset><legend>'+new Date()+'</legend><textarea readonly disabled style="box-sizing:border-box;border:1px dashed #ccc;padding:10px;width:100%;"></textarea></fieldset>');
+                $('#result textarea').first().val(data).height(function(){
+                    return $(this).prop('scrollHeight');
+                });
             });
         });
     </script>
