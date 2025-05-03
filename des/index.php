@@ -91,6 +91,9 @@ if($_SERVER['REQUEST_METHOD']!='GET'){
         <div id="response"></div>
     </form>
     <script type="text/javascript">
+        const query = new URLSearchParams(window.location.search).forEach((value,key)=>{
+            $('*[name='+key+']').val(value);
+        });
         document.querySelector('button').addEventListener("click", function(){
             let data=new FormData();
             data.append('action',document.querySelector('select[name=action]').value);

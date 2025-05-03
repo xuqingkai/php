@@ -109,7 +109,7 @@ if($db){
         <div id="result"></div>
     </form>
     <script>
-        const urlParams = new URLSearchParams(window.location.search).forEach((value,key)=>{
+        const query = new URLSearchParams(window.location.search).forEach((value,key)=>{
             $('*[name='+key+']').val(value);
         });
         $('form').submit(function(e){
