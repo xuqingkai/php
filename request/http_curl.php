@@ -10,16 +10,24 @@ function http_curl($url,$body=false,$headers=array()){
             'User-Agent:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36 Edg/135.0.0.0',
             'Referer:'.substr($url,0,strpos($url,'/',10))
         );
+    }else{
+        foreach($headers as $key=>$val){
+            $request_headers[]=is_numeric($key)?$val:$key.':'.$val;
+        }
     }
-    $headers=array_merge(array('Author:xuqingkai'),$headers);
+    $request_headers=array_merge(array('Author:xuqingkai'),$request_headers);
 
     $curl = curl_init($url);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($curl, CURLOPT_HEADER, true);//是否返回headers信息
-    curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-    curl_setopt($curl, CURLOPT_POST,$body!==false);
+    curl_setopt($curl, CURLOPT_HTTPHEADER, $request_headers);
     //curl_setopt($curl, CURLOPT_ENCODING,'gzip');
-    curl_setopt($curl, CURLOPT_POSTFIELDS , $body===false?'':$body);
+    if($body===false){
+        curl_setopt($curl, CURLOPT_POST, false);
+    }else{
+        curl_setopt($curl, CURLOPT_POST, true);
+        curl_setopt($curl, CURLOPT_POSTFIELDS , $body);
+    }
     curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);//忽略重定向
     curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 10);
     curl_setopt($curl, CURLOPT_TIMEOUT, 10);

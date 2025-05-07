@@ -42,8 +42,8 @@ if($PhoneNumbers)
 	$query .= "&Signature=".urlencode($sign);
 	$url = 'http://dysmsapi.aliyuncs.com/?'.$query;
 	echo('<a href="'.$url.'" target="_blank">'.$url.'</a>');
-	//$result = file_get_contents($url);
-	//echo($result);
+	$result = file_get_contents($url);
+	echo($result);
 }
 ?>
 <form method="post" action="?">
