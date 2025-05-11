@@ -3,7 +3,7 @@ error_reporting(E_ALL);//都显示
 
 //$pdo=new PDO('mysql:host=127.0.0.1;dbname=xqk_db;charset=utf8mb4','root','123456');
 $pdo=new PDO('sqlite:./sqlite3.db','123456');
-function pdo_query$sql,$param=false,$where=''){
+function pdo_query($sql,$param=false){
     global $pdo;
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $pdo->exec("SET NAMES utf8");
@@ -11,25 +11,29 @@ function pdo_query$sql,$param=false,$where=''){
     try{
         if($param){//参数模式
             if(substr(strtoUpper($sql),0,7)=='SELECT '){
-                $where='';
-                foreach($param as $key=>$val){ $where.=(strlen($where)>0?' AND ':'').$key.'=:'.$key; }
-                if($where){ $sql.=(strpos($sql, ' WHERE ')!==false?' AND ':' WHERE ').$where; }
+                if($where){
+                    $sql.=(strpos($sql, ' WHERE ')===false?' WHERE ':' AND ').$where;
+                }
             }elseif(substr(strtoUpper($sql),0,11)=='INSERT INTO'){
                 $fields='';$values='';
                 foreach($param as $key=>$val){
                     $fields.=strlen($fields)>0?','.$key:$key;
                     $values.=strlen($values)>0?',:'.$key:':'.$key;
                 }
-                if(strpos($sql, ' ) VALUES ( ')===false){ $sql.=' ('.$fields.') VALUES ('.$values.')'; }
+                if(strpos($sql, ' ) VALUES ( ')===false){
+                    $sql.=' ('.$fields.') VALUES ('.$values.')'; 
+                }
             }elseif(substr(strtoUpper($sql),0,7)=='UPDATE '){
-                $set='';
-                foreach($param as $key=>$val){ $set.=(strlen($set)>0?',':'').$key.'=:'.$key; }
-                if(strpos($sql, ' SET ')===false){ $sql.=' SET '.$set; }
-                $sql.=(strpos($sql, ' WHERE ')!==false?' AND ':' WHERE ').$where;
+                if($where){
+                    $set='';
+                    foreach($param as $key=>$val){ $set.=(strlen($set)>0?',':'').$key.'=:'.$key; }
+                    $sql.=(strpos($sql, ' SET ')===false?' SET ':',').$set;
+                    $sql.=(strpos($sql, ' WHERE ')===false?' WHERE ':' AND ').$where;
+                }
             }elseif(substr(strtoUpper($sql),0,7)=='DELETE '){
-                $where='';
-                foreach($param as $key=>$val){ $where.=(strlen($where)>0?' AND ':'').$key.'=:'.$key; }
-                if($where){ $sql.=(strpos($sql, ' WHERE ')!==false?' AND ':' WHERE ').$where; }
+                if($where){
+                    $sql.=(strpos($sql, ' WHERE ')===false?' WHERE ':' AND ').$where; 
+                }
             }
             $prepare=$pdo->prepare($sql);
             $prepare->execute($param);
