@@ -4,6 +4,7 @@
 //error_reporting(E_ALL);//都显示
 //date_default_timezone_set('PRC');
 function http_file($url, $body=false, $headers=array()){
+    $request_headers=array();
     if(!$headers){
         $headers=array(
             'Content-Type:application/x-www-form-urlencode; charset=utf-8',
